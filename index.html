@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prasad Grocery | Online Kirana Store</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f8f2;color:#243323}
+header{background:#176b3a;color:white;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0}
+.banner{padding:20px 16px;background:#e1f3df;text-align:center}
+.banner h2{margin:0 0 8px}
+.wrap{max-width:900px;margin:auto;padding:16px}
+.search{width:100%;padding:13px;border:1px solid #ccc;border-radius:10px;font-size:16px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.product{background:white;padding:14px;border-radius:14px;box-shadow:0 2px 8px #0000000c}
+.emoji{font-size:38px}
+.product h3{font-size:16px;margin:8px 0}
+.price{font-weight:bold;color:#176b3a;margin:8px 0}
+button{border:0;border-radius:9px;padding:11px 13px;font-size:14px;font-weight:bold;cursor:pointer}
+.add{background:#176b3a;color:white;width:100%}
+.panel{background:white;border-radius:14px;padding:16px;margin-top:22px}
+.panel h2{margin-top:0}
+.cartrow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
+.qty button{padding:5px 9px;background:#e1f3df}
+label{display:block;margin:12px 0 6px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:9px;font-size:15px}
+.order{width:100%;background:#168344;color:white;margin-top:16px;font-size:16px}
+.note{font-size:13px;color:#666;line-height:1.5}
+footer{text-align:center;padding:22px;color:#666;font-size:13px}
+@media(min-width:600px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🛒 Prasad Grocery</h1>
+  <p>Aapki apni kirana dukaan</p>
+</header>
+
+<section class="banner">
+  <h2>Ghar ka saara samaan, ek hi jagah!</h2>
+  <p>Shop pickup ya home delivery chunein.</p>
+</section>
+
+<main class="wrap">
+  <input id="search" class="search"
+    placeholder="🔍 Samaan khojein..."
+    oninput="renderProducts()">
+
+  <div id="products" class="products"></div>
+
+  <section class="panel">
+    <h2>🛒 Aapka Cart</h2>
+    <div id="cart">Abhi cart khaali hai.</div>
+    <h3>Total: ₹<span id="total">0</span></h3>
+  </section>
+
+  <section class="panel">
+    <h2>📦 Order details</h2>
+
+    <label for="customer">Aapka naam</label>
+    <input id="customer" placeholder="Apna naam likhein">
+
+    <label for="phone">Aapka mobile number</label>
+    <input id="phone" type="tel" inputmode="numeric"
+      placeholder="10 digit mobile number">
+
+    <label for="mode">Samaan kaise chahiye?</label>
+    <select id="mode" onchange="toggleAddress()">
+      <option value="Shop pickup">Shop se pickup</option>
+      <option value="Home delivery">Home delivery</option>
+    </select>
+
+    <div id="addressBox" style="display:none">
+      <label for="address">Delivery ka poora address</label>
+      <textarea id="address" rows="3"
+        placeholder="Ghar ka pata aur area"></textarea>
+    </div>
+
+    <label for="extra">Extra note (optional)</label>
+    <textarea id="extra" rows="2"
+      placeholder="Jaise: 2 kg aata, koi special request"></textarea>
+
+    <button class="order" onclick="sendOrder()">
+      WhatsApp par order bhejein
+    </button>
+
+    <p class="note">
+      Order bhejne ke baad WhatsApp khulega. Order tabhi confirm
+      hoga jab dukaan order accept karegi.
+    </p>
+  </section>
+</main>
+
+<footer>Prasad Grocery • Aapki apni local grocery shop 💚</footer>
+
+<script>
+// Demo products: apni asli keemat baad mein update karein.
+const items = [
+ {id:1,name:"Aata (1 kg)",price:35,emoji:"🌾"},
+ {id:2,name:"Chawal (1 kg)",price:60,emoji:"🍚"},
+ {id:3,name:"Arhar Dal (1 kg)",price:150,emoji:"🫘"},
+ {id:4,name:"Sarson Tel (1 L)",price:200,emoji:"🫙"},
+ {id:5,name:"Cheeni (1 kg)",price:60,emoji:"🧂"},
+ {id:6,name:"Namak (1 kg)",price:32,emoji:"🧂"},
+ {id:7,name:"Biscuit (pack)",price:10,emoji:"🍪"},
+ {id:8,name:"Doodh (500 ml)",price:30,emoji:"🥛"}
+];
+
+const cart = {};
+
+function renderProducts(){
+ const q = document.getElementById("search").value.toLowerCase();
+ const shown = items.filter(p => p.name.toLowerCase().includes(q));
+ document.getElementById("products").innerHTML = shown.map(p => `
+  <article class="product">
+   <div class="emoji">${p.emoji}</div>
+   <h3>${p.name}</h3>
+   <div class="price">₹${p.price}</div>
+   <button class="add" onclick="addItem(${p.id})">+ Cart mein jodein</button>
+  </article>
+ `).join("");
+}
+
+function addItem(id){
+ cart[id] = (cart[id] || 0) + 1;
+ renderCart();
+}
+
+function changeQty(id,amount){
+ cart[id] = (cart[id] || 0) + amount;
+ if(cart[id] <= 0) delete cart[id];
+ renderCart();
+}
+
+function renderCart(){
+ let total = 0;
+ const chosen = items.filter(p => cart[p.id]);
+ document.getElementById("cart").innerHTML = chosen.length
+ ? chosen.map(p => {
+    total += p.price * cart[p.id];
+    return `<div class="cartrow">
+      <div>${p.name}<br>₹${p.price} × ${cart[p.id]}</div>
+      <div class="qty">
+       <button onclick="changeQty(${p.id},-1)">−</button>
+       <button onclick="changeQty(${p.id},1)">+</button>
+      </div>
+     </div>`;
+   }).join("")
+ : "Abhi cart khaali hai.";
+ document.getElementById("total").textContent = total;
+}
+
+function toggleAddress(){
+ const delivery = document.getElementById("mode").value === "Home delivery";
+ document.getElementById("addressBox").style.display = delivery ? "block" : "none";
+}
+
+function sendOrder(){
+ // Apni dukaan ke WhatsApp number se replace karein.
+ // Country code 91 ke saath, bina + ya spaces ke.
+ const shopWhatsApp = "919546454720";
+
+ const customer = document.getElementById("customer").value.trim();
+ const phone = document.getElementById("phone").value.trim();
+ const mode = document.getElementById("mode").value;
+ const address = document.getElementById("address").value.trim();
+ const extra = document.getElementById("extra").value.trim();
+ const chosen = items.filter(p => cart[p.id]);
+
+ if(!chosen.length){
+   alert("Pehle cart mein samaan jodein.");
+   return;
+ }
+ if(!customer || !/^[0-9]{10}$/.test(phone)){
+   alert("Apna naam aur sahi 10 digit mobile number bharein.");
+   return;
+ }
+ if(mode === "Home delivery" && !address){
+   alert("Home delivery ke liye address bharein.");
+   return;
+ }
+ if(shopWhatsApp.includes("X")){
+   alert("Website owner: code mein apna WhatsApp number daalein.");
+   return;
+ }
+
+ let total = 0;
+ let message = "Namaste Prasad Grocery! Mujhe order dena hai.%0A";
+ let lines = ["Namaste Prasad Grocery! Mujhe order dena hai.",""];
+ lines.push("Naam: " + customer, "Customer mobile: " + phone, "Delivery: " + mode);
+ if(mode === "Home delivery") lines.push("Address: " + address);
+ lines.push("", "Order:");
+ chosen.forEach(p => {
+   lines.push(p.name + " x " + cart[p.id] + " = Rs. " + (p.price * cart[p.id]));
+   total += p.price * cart[p.id];
+ });
+ lines.push("", "Total (delivery charge agar lagu ho to alag): Rs. " + total);
+ if(extra) lines.push("Note: " + extra);
+ lines.push("", "Kripya order confirm karein.");
+ message = encodeURIComponent(lines.join("\n"));
+ window.open("https://wa.me/" + shopWhatsApp + "?text=" + message, "_blank");
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
