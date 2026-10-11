@@ -3,402 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#146c43">
-<meta name="description" content="Prasad Grocery - Grocery, daily essentials aur stationery. Apna order WhatsApp par bhejein.">
-<title>Prasad Grocery | Aapki Apni Dukaan</title>
+<meta name="theme-color" content="#176b45">
+<title>Prasad Grocery | Online Grocery Order</title>
 <style>
-:root{--green:#146c43;--dark:#104d32;--light:#eaf6ee;--orange:#ffb84d;--ink:#192820;--muted:#68776d;--line:#e5ebe6;--white:#fff}
+:root{--green:#176b45;--light:#edf7ef;--orange:#f3a642;--ink:#203328}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7faf7;color:var(--ink);padding-bottom:88px}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-header{background:var(--green);color:white;padding:17px 16px 20px}
-.top{max-width:1050px;margin:auto}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{background:white;color:var(--green);border-radius:14px;width:48px;height:48px;display:grid;place-items:center;font-size:25px}
-.brand h1{font-size:23px;margin:0 0 4px}
-.brand p{font-size:12px;margin:0;color:#e0f4e7}
-.header-note{margin:17px 0 12px;font-size:14px;line-height:1.5}
-.search{display:flex;background:white;border-radius:12px;overflow:hidden}
-.search span{padding:13px 10px;color:#65756a}
-.search input{border:0;outline:0;width:100%;padding:13px 8px;color:#17251c}
-main{max-width:1050px;margin:auto;padding:16px}
-.section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:20px 0 12px}
-.section-title h2{font-size:19px;margin:0}
-.small{font-size:12px;color:var(--muted)}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:2px 0 8px}
-.cat{border:1px solid var(--line);background:white;border-radius:22px;padding:10px 14px;white-space:nowrap;color:#32483a}
-.cat.active{background:var(--green);color:white;border-color:var(--green)}
-.banner{background:linear-gradient(110deg,#e4f5e9,#fff4df);border-radius:17px;padding:18px;margin:17px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.banner h2{font-size:19px;margin:0 0 7px;color:var(--dark)}
-.banner p{font-size:13px;margin:0;line-height:1.5;color:#52665a}
-.banner-icon{font-size:43px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.card{background:white;border:1px solid var(--line);border-radius:15px;padding:12px;min-width:0}
-.product-icon{height:65px;border-radius:12px;background:#f1f7f1;display:grid;place-items:center;font-size:35px;margin-bottom:10px}
-.card h3{font-size:14px;margin:0 0 5px;line-height:1.35}
-.card .category-name{font-size:11px;color:var(--muted);min-height:15px}
-.card-bottom{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:12px}
-.qty{display:flex;align-items:center;gap:9px}
-.qty button{border:1px solid #cdded1;background:#f1f8f2;color:var(--green);border-radius:8px;width:29px;height:29px;font-weight:bold;font-size:18px}
-.qty strong{min-width:12px;text-align:center;font-size:14px}
-.add{border:0;background:var(--green);color:white;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:bold}
-.add:active,.primary:active{transform:scale(.98)}
-.order-section{scroll-margin-top:15px;background:white;border:1px solid var(--line);border-radius:17px;padding:16px;margin-top:23px}
-.order-section h2{font-size:19px;margin:0 0 6px}
-.order-section>p{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 15px}
-.field{margin:13px 0}
-.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d8e2da;border-radius:10px;background:#fff;outline-color:var(--green);color:var(--ink)}
-.field textarea{resize:vertical;min-height:100px;line-height:1.5}
-.field small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}
-.cart-box{background:#f5f9f5;border-radius:12px;padding:12px;margin:13px 0}
-.cart-heading{display:flex;justify-content:space-between;align-items:center;font-weight:bold;font-size:14px}
-.cart-list{margin-top:9px}
-.cart-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #e1eae2;font-size:13px}
-.cart-row:last-child{border-bottom:0}
-.remove{border:0;background:transparent;color:#bd3939;font-size:12px}
-.empty{font-size:13px;color:var(--muted);padding:12px 0}
-.primary{width:100%;border:0;background:var(--green);color:white;border-radius:11px;padding:14px;font-weight:bold;font-size:15px}
-.hint{font-size:11px;color:var(--muted);line-height:1.6;margin:10px 0 0}
-footer{text-align:center;padding:22px 14px;color:var(--muted);font-size:12px;line-height:1.7}
-.sticky{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px 14px;z-index:5;box-shadow:0 -4px 15px #152f1710}
-.sticky-inner{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.sticky small{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}
-.sticky strong{font-size:14px}
-.sticky button{background:#177447;color:white;border:0;border-radius:11px;padding:13px 17px;font-weight:bold}
-.no-results{grid-column:1/-1;background:white;padding:20px;border-radius:12px;color:var(--muted);text-align:center}
-@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.product-icon{height:85px}.card{padding:15px}.brand h1{font-size:27px}}
-@media(min-width:850px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}header{padding-top:23px}.header-note{font-size:15px}}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f9f5;color:var(--ink)}
+header{background:var(--green);color:white;padding:24px 16px;text-align:center}
+.logo{font-size:30px;font-weight:900;letter-spacing:1px}
+header p{margin:8px 0 0;font-size:14px}
+.badge{display:inline-block;background:#ffffff20;padding:7px 12px;border-radius:20px;margin-top:12px;font-size:12px}
+main{max-width:900px;margin:auto;padding:16px}
+.hero{background:linear-gradient(120deg,#e1f2df,#fff5df);border-radius:18px;padding:22px 18px;margin-bottom:18px}
+.hero h1{margin:0 0 8px;font-size:24px;color:var(--green)}
+.hero p{margin:0;line-height:1.5}
+h2{font-size:19px;margin:22px 0 12px}
+.search{width:100%;padding:14px;border:1px solid #d7e0d7;border-radius:12px;font-size:16px;background:white}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:12px 0}
+.cat{border:1px solid #cdddcf;background:white;border-radius:22px;padding:9px 13px;white-space:nowrap;color:var(--green)}
+.cat.active{background:var(--green);color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.item{background:white;border:1px solid #e4eae3;border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:10px}
+.item .emoji{font-size:30px}
+.item h3{font-size:15px;margin:0;line-height:1.4}
+.item small{color:#6c796f}
+.qty{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.qty button{width:36px;height:36px;border:0;border-radius:10px;background:var(--light);color:var(--green);font-size:22px;font-weight:bold}
+.qty span{font-weight:bold}
+.panel{background:white;border:1px solid #e1e8e0;border-radius:16px;padding:16px;margin-top:18px}
+label{display:block;font-size:14px;font-weight:bold;margin:13px 0 6px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d4ded4;border-radius:10px;font:inherit;background:white}
+textarea{min-height:90px;resize:vertical}
+.hint{font-size:12px;color:#657269;line-height:1.5}
+.location{width:100%;padding:14px;background:#e8f4eb;color:#176b45;border:1px solid #b8d9c0;border-radius:12px;font-size:15px;font-weight:bold;margin-top:10px}
+.location:disabled{opacity:.65}
+.status{font-size:13px;margin-top:9px;overflow-wrap:anywhere}
+.success{color:#176b45}.error{color:#b42318}
+.primary{width:100%;padding:15px;background:var(--green);color:white;border:0;border-radius:12px;font-size:16px;font-weight:bold;margin-top:16px}
+.primary:disabled{opacity:.5}
+footer{text-align:center;padding:26px 15px;color:#69766b;font-size:12px}
+.sticky{position:sticky;bottom:0;background:#f7f9f5ed;padding:10px 0 4px}
+.empty{grid-column:1/-1;background:white;border-radius:12px;padding:20px;text-align:center}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.logo{font-size:36px}}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="top">
-    <div class="brand">
-      <div class="logo">🛍️</div>
-      <div>
-        <h1>Prasad Grocery</h1>
-        <p>Aapki apni dukaan ❤️</p>
-      </div>
-    </div>
-    <p class="header-note">Ghar ki zaroorat ka samaan aasani se chunein aur apna order WhatsApp par bhejein.</p>
-    <div class="search">
-      <span>🔎</span>
-      <input id="search" type="search" placeholder="Samaan search karein..." aria-label="Samaan search karein">
-    </div>
-  </div>
+  <div style="font-size:34px">🛒</div>
+  <div class="logo">PRASAD GROCERY</div>
+  <p>Aapki rozmarra ki zarooraton ka bharosemand store</p>
+  <div class="badge">🌾 Daily Needs • Snacks • Household Items</div>
 </header>
 
 <main>
-  <div class="banner">
-    <div>
-      <h2>Namaste! Swagat hai 👋</h2>
-      <p>Apna samaan chunein, quantity batayein aur order bhejein.<br>Final rate dukaan se confirm hoga.</p>
-    </div>
-    <div class="banner-icon">🛒</div>
-  </div>
-
-  <section>
-    <div class="section-title">
-      <h2>Product Categories</h2>
-      <span class="small">Apni pasand chunein</span>
-    </div>
-    <div class="categories" id="categories"></div>
+  <section class="hero">
+    <h1>Ghar baithe grocery mangayein!</h1>
+    <p>Apne items chunein, quantity batayein aur apni location share karke WhatsApp par order bhejein.</p>
   </section>
 
-  <section>
-    <div class="section-title">
-      <h2 id="product-heading">Saara Samaan</h2>
-      <span class="small" id="product-count"></span>
-    </div>
-    <div class="grid" id="products"></div>
-  </section>
+  <input id="search" class="search" type="search" placeholder="🔎 Grocery item search karein..." aria-label="Search items">
 
-  <section class="order-section" id="order-section">
-    <h2>📝 Apna Order Likhein</h2>
-    <p>Yahan extra samaan, packet/size ya koi khaas baat likh sakte hain. Ye box order bhejne se pehle aasani se mil jayega.</p>
+  <div id="categories" class="categories"></div>
+  <h2>🛍️ Grocery Items</h2>
+  <div id="products" class="grid"></div>
 
-    <div class="cart-box">
-      <div class="cart-heading">
-        <span>🛒 Aapka Chuna Hua Samaan</span>
-        <span id="cart-count">0 items</span>
-      </div>
-      <div class="cart-list" id="cart-list">
-        <div class="empty">Abhi koi item select nahi kiya hai.</div>
-      </div>
-    </div>
+  <section class="panel">
+    <h2 style="margin-top:0">📝 Aapka Order</h2>
+    <p class="hint">Items ki quantity select karein. Koi fixed price nahi dikhaya jayega; final price shop se confirm hoga.</p>
+    <div id="cart">Abhi koi item select nahi kiya hai.</div>
 
-    <div class="field">
-      <label for="note">Extra order / Note</label>
-      <textarea id="note" placeholder="Jaise: Fortune oil 1 litre ke 2 packet, 10 rupaye wali Maggi 5, 1 kg lahsun..."></textarea>
-      <small>Yahan un items ko bhi likhein jo upar ki list mein nahi hain. Samaan ka size aur quantity saaf likhein.</small>
-    </div>
+    <label for="customer">Aapka naam *</label>
+    <input id="customer" autocomplete="name" placeholder="Apna naam likhein">
 
-    <div class="field">
-      <label for="customer">Aapka Naam *</label>
-      <input id="customer" type="text" placeholder="Apna naam likhein" autocomplete="name">
+    <label for="phone">Aapka mobile number *</label>
+    <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" placeholder="10 digit mobile number">
+
+    <label for="delivery">Order kaise lena hai? *</label>
+    <select id="delivery">
+      <option value="Home Delivery">Home Delivery</option>
+      <option value="Shop Pickup">Shop se Pickup</option>
+    </select>
+
+    <label for="note">Apna order likhein / extra note</label>
+    <textarea id="note" placeholder="Jaise: 2 kg aata, koi particular brand, landmark ya delivery instruction..."></textarea>
+
+    <h2>📍 Delivery Location</h2>
+    <p class="hint">Order bhejne se pehle location share karna zaroori hai. Button dabakar location permission Allow karein. Phone ki Location/GPS setting on rakhein.</p>
+    <button class="location" id="locBtn" type="button">📍 Meri Current Location Share Karein</button>
+    <div id="locStatus" class="status" aria-live="polite">Abhi location share nahi hui hai.</div>
+    <p class="hint">GPS location aas-paas ki jagah dikha sakti hai. Delivery ke liye zaroori ho toh note mein landmark bhi likhein. Location sirf aapke button dabane par li jayegi.</p>
+
+    <div class="sticky">
+      <button id="orderBtn" class="primary" type="button" disabled>📲 WhatsApp Par Order Karein</button>
+      <p class="hint" style="text-align:center">Order bhejne ke baad WhatsApp mein message khulega. Use check karke Send dabayein.</p>
     </div>
-    <div class="field">
-      <label for="phone">Mobile Number *</label>
-      <input id="phone" type="tel" inputmode="numeric" placeholder="10 digit mobile number" maxlength="10" autocomplete="tel">
-    </div>
-    <div class="field">
-      <label for="fulfilment">Samaan kaise lena hai? *</label>
-      <select id="fulfilment">
-        <option value="Shop se pickup">Shop se pickup</option>
-        <option value="Home delivery">Home delivery (dukaan se confirm hoga)</option>
-      </select>
-    </div>
-    <div class="field" id="address-field" style="display:none">
-      <label for="address">Delivery Address *</label>
-      <textarea id="address" placeholder="Mohalla, gaon aur paas ki pehchan"></textarea>
-    </div>
-    <button class="primary" id="send-order">🟢 WhatsApp par Order Bhejein</button>
-    <p class="hint">Item ke rates aur availability dukaan se confirm honge. WhatsApp par order bhejne se payment apne aap nahi hoti.</p>
   </section>
 </main>
 
 <footer>
-  <strong>Prasad Grocery</strong><br>
-  Aapki daily needs, ek hi jagah.<br>
-  Order ke rate aur delivery ki pushti dukaan se hogi.
+  <strong>PRASAD GROCERY</strong><br>
+  Aapki local grocery shop ❤️<br>
+  Final price aur delivery availability shop se confirm karein.
 </footer>
 
-<div class="sticky">
-  <div class="sticky-inner">
-    <div>
-      <small id="sticky-caption">Abhi koi item select nahi</small>
-      <strong id="sticky-count">0 items chune gaye</strong>
-    </div>
-    <button id="go-order">Order Now ↓</button>
-  </div>
-</div>
-
 <script>
-/* APNA WHATSAPP NUMBER YAHAN SET KAREIN:
-   India number ka format: 91 ke saath 10 digit number.
-   Udaharan: 919876543210 (yeh sirf format ka example hai).
-   Asli number daalne tak order button kaam nahi karega.
-*/
+// APNA SHOP WHATSAPP NUMBER YAHAN DAALEIN.
+// Format: 91 ke baad 10-digit mobile number.
+// Example sirf format samjhane ke liye hai: 919876543210
 const WHATSAPP_NUMBER = "919546454720";
 
-const categories = [
-  "Sabhi Items","Anaaj & Daal","Tel & Masale","Chai & Breakfast",
-  "Snacks & Chocolates","Personal Care","Safai","Stationery"
+const products = [
+  {name:"Aata",cat:"Anaaj & Daal",emoji:"🌾"},
+  {name:"Chawal",cat:"Anaaj & Daal",emoji:"🍚"},
+  {name:"Arhar Daal",cat:"Anaaj & Daal",emoji:"🫘"},
+  {name:"Moong Daal",cat:"Anaaj & Daal",emoji:"🫘"},
+  {name:"Masoor Daal",cat:"Anaaj & Daal",emoji:"🫘"},
+  {name:"Chana Daal",cat:"Anaaj & Daal",emoji:"🫘"},
+  {name:"Besan",cat:"Anaaj & Daal",emoji:"🌾"},
+  {name:"Suji",cat:"Anaaj & Daal",emoji:"🌾"},
+  {name:"Fortune Soyabean Oil",cat:"Tel & Masale",emoji:"🫗"},
+  {name:"Sarson Tel",cat:"Tel & Masale",emoji:"🫗"},
+  {name:"Haldi",cat:"Tel & Masale",emoji:"🟡"},
+  {name:"Lal Mirch",cat:"Tel & Masale",emoji:"🌶️"},
+  {name:"Dhaniya Powder",cat:"Tel & Masale",emoji:"🌿"},
+  {name:"Garam Masala",cat:"Tel & Masale",emoji:"🧂"},
+  {name:"Jeera",cat:"Tel & Masale",emoji:"🌿"},
+  {name:"Lahsun",cat:"Tel & Masale",emoji:"🧄"},
+  {name:"Adrak",cat:"Tel & Masale",emoji:"🫚"},
+  {name:"Namak",cat:"Tel & Masale",emoji:"🧂"},
+  {name:"Tazaa Tea Leaf",cat:"Chai & Breakfast",emoji:"🍵"},
+  {name:"Cheeni",cat:"Chai & Breakfast",emoji:"🍚"},
+  {name:"Maggi",cat:"Chai & Breakfast",emoji:"🍜"},
+  {name:"Poha",cat:"Chai & Breakfast",emoji:"🥣"},
+  {name:"Biscuits",cat:"Snacks & Drinks",emoji:"🍪"},
+  {name:"Namkeen",cat:"Snacks & Drinks",emoji:"🥨"},
+  {name:"Chips",cat:"Snacks & Drinks",emoji:"🍟"},
+  {name:"Chocolates",cat:"Snacks & Drinks",emoji:"🍫"},
+  {name:"Toffee / Candy",cat:"Snacks & Drinks",emoji:"🍬"},
+  {name:"Cold Drinks",cat:"Snacks & Drinks",emoji:"🥤"},
+  {name:"Soap",cat:"Personal Care",emoji:"🧼"},
+  {name:"Shampoo",cat:"Personal Care",emoji:"🧴"},
+  {name:"Toothpaste",cat:"Personal Care",emoji:"🪥"},
+  {name:"Toothbrush",cat:"Personal Care",emoji:"🪥"},
+  {name:"Hair Oil",cat:"Personal Care",emoji:"🧴"},
+  {name:"Detergent",cat:"Cleaning",emoji:"🫧"},
+  {name:"Dishwash",cat:"Cleaning",emoji:"🧽"},
+  {name:"Notebook",cat:"Stationery",emoji:"📓"},
+  {name:"Pen",cat:"Stationery",emoji:"🖊️"},
+  {name:"Pencil",cat:"Stationery",emoji:"✏️"},
+  {name:"Eraser / Sharpener",cat:"Stationery",emoji:"✏️"},
+  {name:"Other Grocery Item",cat:"Other Items",emoji:"🛍️"}
 ];
 
-const items = [
-  {id:1,name:"Aata",cat:"Anaaj & Daal",icon:"🌾"},
-  {id:2,name:"Chawal",cat:"Anaaj & Daal",icon:"🍚"},
-  {id:3,name:"Arhar Daal",cat:"Anaaj & Daal",icon:"🫘"},
-  {id:4,name:"Moong Daal",cat:"Anaaj & Daal",icon:"🫘"},
-  {id:5,name:"Chana Daal",cat:"Anaaj & Daal",icon:"🟡"},
-  {id:6,name:"Masoor Daal",cat:"Anaaj & Daal",icon:"🫘"},
-  {id:7,name:"Besan",cat:"Anaaj & Daal",icon:"🌾"},
-  {id:8,name:"Suji",cat:"Anaaj & Daal",icon:"🌾"},
-  {id:9,name:"Fortune Soyabean Oil",cat:"Tel & Masale",icon:"🫗"},
-  {id:10,name:"Sarson Tel",cat:"Tel & Masale",icon:"🫗"},
-  {id:11,name:"Haldi Powder",cat:"Tel & Masale",icon:"🟡"},
-  {id:12,name:"Mirch Powder",cat:"Tel & Masale",icon:"🌶️"},
-  {id:13,name:"Dhaniya Powder",cat:"Tel & Masale",icon:"🌿"},
-  {id:14,name:"Garam Masala",cat:"Tel & Masale",icon:"🧂"},
-  {id:15,name:"Jeera",cat:"Tel & Masale",icon:"🌿"},
-  {id:16,name:"Lahsun (Garlic)",cat:"Tel & Masale",icon:"🧄"},
-  {id:17,name:"Adrak",cat:"Tel & Masale",icon:"🫚"},
-  {id:18,name:"Namak",cat:"Tel & Masale",icon:"🧂"},
-  {id:19,name:"Cheeni",cat:"Chai & Breakfast",icon:"🍚"},
-  {id:20,name:"Tazaa Tea Leaf",cat:"Chai & Breakfast",icon:"🍵"},
-  {id:21,name:"Maggi Noodles",cat:"Chai & Breakfast",icon:"🍜"},
-  {id:22,name:"Poha",cat:"Chai & Breakfast",icon:"🥣"},
-  {id:23,name:"Biscuits",cat:"Snacks & Chocolates",icon:"🍪"},
-  {id:24,name:"Namkeen",cat:"Snacks & Chocolates",icon:"🥨"},
-  {id:25,name:"Chips",cat:"Snacks & Chocolates",icon:"🍟"},
-  {id:26,name:"Chocolates",cat:"Snacks & Chocolates",icon:"🍫"},
-  {id:27,name:"Toffee & Candy",cat:"Snacks & Chocolates",icon:"🍬"},
-  {id:28,name:"Cold Drinks",cat:"Snacks & Chocolates",icon:"🥤"},
-  {id:29,name:"Soap",cat:"Personal Care",icon:"🧼"},
-  {id:30,name:"Shampoo",cat:"Personal Care",icon:"🧴"},
-  {id:31,name:"Toothpaste",cat:"Personal Care",icon:"🪥"},
-  {id:32,name:"Toothbrush",cat:"Personal Care",icon:"🪥"},
-  {id:33,name:"Hair Oil",cat:"Personal Care",icon:"🧴"},
-  {id:34,name:"Detergent Powder",cat:"Safai",icon:"🫧"},
-  {id:35,name:"Dishwash Bar",cat:"Safai",icon:"🧽"},
-  {id:36,name:"Notebook",cat:"Stationery",icon:"📒"},
-  {id:37,name:"Pen",cat:"Stationery",icon:"🖊️"},
-  {id:38,name:"Pencil",cat:"Stationery",icon:"✏️"},
-  {id:39,name:"Eraser",cat:"Stationery",icon:"◻️"},
-  {id:40,name:"Sharpener",cat:"Stationery",icon:"✂️"},
-  {id:41,name:"School Supplies",cat:"Stationery",icon:"🎒"}
-];
+const quantities = {};
+let activeCategory = "All Items";
+let sharedLocation = null;
+let locationBusy = false;
 
-let activeCategory = "Sabhi Items";
-let quantities = {};
+const $ = id => document.getElementById(id);
 
-const categoriesEl = document.getElementById("categories");
-const productsEl = document.getElementById("products");
-const searchEl = document.getElementById("search");
+function categoriesList(){
+  return ["All Items", ...new Set(products.map(p=>p.cat))];
+}
 
 function renderCategories(){
-  categoriesEl.innerHTML = "";
-  categories.forEach(cat=>{
-    const b = document.createElement("button");
-    b.className = "cat" + (cat===activeCategory ? " active" : "");
-    b.textContent = cat;
-    b.onclick = ()=>{
-      activeCategory = cat;
+  $("categories").innerHTML = categoriesList().map(cat =>
+    `<button type="button" class="cat ${activeCategory===cat?"active":""}" data-cat="${cat}">${cat}</button>`
+  ).join("");
+  $("categories").querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      activeCategory=btn.dataset.cat;
       renderCategories();
       renderProducts();
-    };
-    categoriesEl.appendChild(b);
+    });
   });
 }
 
 function renderProducts(){
-  const q = searchEl.value.trim().toLowerCase();
-  const filtered = items.filter(item=>{
-    const categoryMatch = activeCategory==="Sabhi Items" || item.cat===activeCategory;
-    const searchMatch = item.name.toLowerCase().includes(q) || item.cat.toLowerCase().includes(q);
-    return categoryMatch && searchMatch;
-  });
+  const query=$("search").value.trim().toLowerCase();
+  const filtered=products.filter(p=>
+    (activeCategory==="All Items" || p.cat===activeCategory) &&
+    p.name.toLowerCase().includes(query)
+  );
+  $("products").innerHTML=filtered.length ? filtered.map(p=>{
+    const i=products.indexOf(p);
+    const q=quantities[i]||0;
+    return `<article class="item">
+      <div class="emoji">${p.emoji}</div>
+      <h3>${p.name}</h3>
+      <small>${p.cat}</small>
+      <div class="qty">
+        <button type="button" data-change="-1" data-i="${i}" aria-label="Decrease ${p.name}">−</button>
+        <span>${q}</span>
+        <button type="button" data-change="1" data-i="${i}" aria-label="Increase ${p.name}">+</button>
+      </div>
+    </article>`;
+  }).join("") : `<div class="empty">Koi item nahi mila.</div>`;
 
-  document.getElementById("product-heading").textContent =
-    q ? "Search Results" : activeCategory;
-  document.getElementById("product-count").textContent = filtered.length + " items";
-  productsEl.innerHTML = "";
-
-  if(!filtered.length){
-    productsEl.innerHTML = '<div class="no-results">Koi item nahi mila. Neeche order note mein item likh sakte hain.</div>';
-    return;
-  }
-
-  filtered.forEach(item=>{
-    const qty = quantities[item.id] || 0;
-    const card = document.createElement("article");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="product-icon" aria-hidden="true">${item.icon}</div>
-      <h3>${item.name}</h3>
-      <div class="category-name">${item.cat}</div>
-      <div class="card-bottom">
-        <div class="qty">
-          <button aria-label="${item.name} quantity kam karein" data-minus="${item.id}">−</button>
-          <strong>${qty}</strong>
-          <button aria-label="${item.name} quantity badhayein" data-plus="${item.id}">+</button>
-        </div>
-        <button class="add" data-add="${item.id}">Add +</button>
-      </div>`;
-    productsEl.appendChild(card);
+  $("products").querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.i);
+      quantities[i]=Math.max(0,(quantities[i]||0)+Number(btn.dataset.change));
+      renderProducts();
+      renderCart();
+    });
   });
 }
 
-function changeQty(id,delta){
-  quantities[id] = Math.max(0,(quantities[id]||0)+delta);
-  if(quantities[id]===0) delete quantities[id];
-  renderProducts();
-  renderCart();
+function selectedItems(){
+  return products.map((p,i)=>({...p,qty:quantities[i]||0}))
+    .filter(p=>p.qty>0);
 }
-
-productsEl.addEventListener("click",e=>{
-  const plus = e.target.closest("[data-plus]");
-  const minus = e.target.closest("[data-minus]");
-  const add = e.target.closest("[data-add]");
-  if(plus) changeQty(Number(plus.dataset.plus),1);
-  if(minus) changeQty(Number(minus.dataset.minus),-1);
-  if(add) changeQty(Number(add.dataset.add),1);
-});
 
 function renderCart(){
-  const chosen = items.filter(i=>(quantities[i.id]||0)>0);
-  const totalQty = chosen.reduce((sum,i)=>sum+quantities[i.id],0);
-  document.getElementById("cart-count").textContent = totalQty + " items";
-  document.getElementById("sticky-count").textContent = totalQty + " items chune gaye";
-  document.getElementById("sticky-caption").textContent =
-    totalQty ? "Order ke liye taiyar" : "Samaan chunein ya note likhein";
+  const items=selectedItems();
+  $("cart").innerHTML=items.length
+    ? `<ul>${items.map(p=>`<li>${p.name} — Quantity: ${p.qty}</li>`).join("")}</ul>`
+    : "Abhi koi item select nahi kiya hai.";
+  updateOrderButton();
+}
 
-  const list = document.getElementById("cart-list");
-  if(!chosen.length){
-    list.innerHTML = '<div class="empty">Abhi koi item select nahi kiya hai. Aap seedhe note mein bhi order likh sakte hain.</div>';
+function updateOrderButton(){
+  $("orderBtn").disabled = !sharedLocation || locationBusy;
+}
+
+function setLocationStatus(message,kind){
+  $("locStatus").className="status "+(kind||"");
+  $("locStatus").textContent=message;
+}
+
+$("search").addEventListener("input",renderProducts);
+
+$("locBtn").addEventListener("click",()=>{
+  if(!navigator.geolocation){
+    sharedLocation=null;
+    setLocationStatus("Is browser mein location support nahi hai. Updated Chrome mein try karein.","error");
+    updateOrderButton();
+    return;
+  }
+  if(!window.isSecureContext){
+    sharedLocation=null;
+    setLocationStatus("Location ke liye secure HTTPS website zaroori hai.","error");
+    updateOrderButton();
     return;
   }
 
-  list.innerHTML = "";
-  chosen.forEach(item=>{
-    const row = document.createElement("div");
-    row.className = "cart-row";
-    const name = document.createElement("span");
-    name.textContent = item.icon+" "+item.name+" × "+quantities[item.id];
-    const remove = document.createElement("button");
-    remove.className = "remove";
-    remove.textContent = "Hataayein";
-    remove.onclick = ()=>{quantities[item.id]=0;delete quantities[item.id];renderProducts();renderCart();};
-    row.append(name,remove);
-    list.appendChild(row);
+  locationBusy=true;
+  sharedLocation=null;
+  $("locBtn").disabled=true;
+  $("locBtn").textContent="📍 Location mil rahi hai...";
+  setLocationStatus("Phone ki location permission Allow karein aur GPS on rakhein.");
+  updateOrderButton();
+
+  navigator.geolocation.getCurrentPosition(position=>{
+    const lat=position.coords.latitude;
+    const lon=position.coords.longitude;
+    sharedLocation={
+      lat:lat,
+      lon:lon,
+      accuracy:position.coords.accuracy,
+      map:"https://www.google.com/maps?q="+lat+","+lon
+    };
+    locationBusy=false;
+    $("locBtn").disabled=false;
+    $("locBtn").textContent="✅ Location Share Ho Gayi — Dobara Share Karein";
+    setLocationStatus("Location mil gayi! Approximate accuracy: "+Math.round(position.coords.accuracy)+" metres. Order ke saath Maps link jayega.","success");
+    updateOrderButton();
+  },error=>{
+    sharedLocation=null;
+    locationBusy=false;
+    $("locBtn").disabled=false;
+    $("locBtn").textContent="📍 Dobara Location Share Karein";
+    let msg="Location nahi mil saki. GPS on karke dobara try karein.";
+    if(error.code===1) msg="Location permission deny hui. Browser settings mein location Allow karke dobara try karein.";
+    if(error.code===2) msg="Phone ki location nahi mil rahi. GPS on karke khuli jagah par dobara try karein.";
+    if(error.code===3) msg="Location milne mein der hui. Dobara try karein.";
+    setLocationStatus(msg,"error");
+    updateOrderButton();
+  },{
+    enableHighAccuracy:true,
+    timeout:25000,
+    maximumAge:0
   });
-}
-
-searchEl.addEventListener("input",renderProducts);
-
-document.getElementById("go-order").addEventListener("click",()=>{
-  document.getElementById("order-section").scrollIntoView({behavior:"smooth",block:"start"});
 });
 
-document.getElementById("fulfilment").addEventListener("change",e=>{
-  document.getElementById("address-field").style.display =
-    e.target.value==="Home delivery" ? "block" : "none";
-});
+$("orderBtn").addEventListener("click",()=>{
+  const items=selectedItems();
+  const name=$("customer").value.trim();
+  const phone=$("phone").value.trim();
+  const delivery=$("delivery").value;
+  const note=$("note").value.trim();
 
-document.getElementById("send-order").addEventListener("click",()=>{
-  const name = document.getElementById("customer").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const method = document.getElementById("fulfilment").value;
-  const address = document.getElementById("address").value.trim();
-  const note = document.getElementById("note").value.trim();
-  const chosen = items.filter(i=>(quantities[i.id]||0)>0);
-
-  if(!chosen.length && !note){
-    alert("Pehle koi item chunein ya Apna Order box mein samaan likhein.");
-    document.getElementById("note").focus();
+  if(!items.length){
+    alert("Pehle kam se kam ek grocery item select karein.");
     return;
   }
   if(!name){
-    alert("Kripya apna naam likhein.");
-    document.getElementById("customer").focus();
+    alert("Apna naam likhein.");
+    $("customer").focus();
     return;
   }
   if(!/^[6-9]\d{9}$/.test(phone)){
-    alert("Kripya sahi 10 digit mobile number likhein.");
-    document.getElementById("phone").focus();
+    alert("Sahi 10-digit Indian mobile number likhein.");
+    $("phone").focus();
     return;
   }
-  if(method==="Home delivery" && !address){
-    alert("Home delivery ke liye apna address likhein.");
-    document.getElementById("address").focus();
+  if(!sharedLocation){
+    alert("Pehle apni location share karein.");
     return;
   }
-  if(!/^91[6-9]\d{9}$/.test(WHATSAPP_NUMBER)){
-    alert("Shop ka WhatsApp number abhi set nahi hua hai. Website ke code mein WHATSAPP_NUMBER ko 91 ke saath sahi 10 digit number se badlein.");
+  if(!/^91\d{10}$/.test(WHATSAPP_NUMBER)){
+    alert("Shop ka WhatsApp number code mein sahi set nahi hua hai. 91 ke baad 10 digits daalein.");
     return;
   }
 
-  let message = "🛒 *PRASAD GROCERY - NAYA ORDER*%0A";
-  const lines = [
-    "Customer: "+name,
-    "Mobile: "+phone,
-    "Order type: "+method
+  const lines=[
+    "🛒 *PRASAD GROCERY — NEW ORDER*",
+    "",
+    "*Customer:* "+name,
+    "*Customer Mobile:* "+phone,
+    "*Order Type:* "+delivery,
+    "",
+    "*Items:*",
+    ...items.map(p=>"• "+p.name+" — Quantity: "+p.qty),
+    "",
+    "*Customer Note:* "+(note||"Koi extra note nahi"),
+    "",
+    "*Customer Location:*",
+    sharedLocation.map,
+    "",
+    "*Approx. GPS accuracy:* "+Math.round(sharedLocation.accuracy)+" metres",
+    "",
+    "Kripya items, final price aur delivery availability confirm karein."
   ];
-  if(method==="Home delivery") lines.push("Address: "+address);
-  message += "%0A"+lines.map(encodeURIComponent).join("%0A");
 
-  if(chosen.length){
-    message += "%0A%0A*Selected items:*%0A";
-    message += chosen.map(i=>encodeURIComponent("• "+i.name+" × "+quantities[i.id])).join("%0A");
-  }
-  if(note) message += "%0A%0A*Extra order / Note:*%0A"+encodeURIComponent(note);
-  message += "%0A%0A*Note: Final rate aur availability confirm karni hai.*";
-
-  const url = "https://wa.me/"+WHATSAPP_NUMBER+"?text="+message;
-  window.location.href = url;
+  const url="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(lines.join("\n"));
+  window.location.href=url;
 });
 
 renderCategories();
